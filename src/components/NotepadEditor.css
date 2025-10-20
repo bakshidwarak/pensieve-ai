@@ -212,6 +212,12 @@
   border-color: #8b5cf6;
 }
 
+.template-actions {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+
 .edit-template-btn {
   background: none;
   border: none;
@@ -231,6 +237,27 @@
 .edit-template-btn:hover {
   background-color: #21262d;
   color: #c9d1d9;
+}
+
+.delete-template-btn {
+  background: none;
+  border: none;
+  color: #da3633;
+  cursor: pointer;
+  padding: 0.2rem;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  transition: all 0.2s ease;
+  opacity: 0;
+}
+
+.template-item:hover .delete-template-btn {
+  opacity: 1;
+}
+
+.delete-template-btn:hover {
+  background-color: #da3633;
+  color: white;
 }
 
 .loading-message {

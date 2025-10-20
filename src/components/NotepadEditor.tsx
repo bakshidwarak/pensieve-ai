@@ -59,6 +59,27 @@ const NotepadEditor: React.FC<NotepadEditorProps> = () => {
     loadTemplates();
   }, []);
 
+  // Delete template function
+  const handleDeleteTemplate = async (templateId: string) => {
+    try {
+      const response = await templateApi.deleteTemplate(templateId);
+      if (response.success) {
+        // Reload templates after deletion
+        const loadResponse = await templateApi.getAllTemplates();
+        if (loadResponse.success && loadResponse.data) {
+          setAllTemplates(loadResponse.data);
+        }
+        console.log('Template deleted successfully');
+      } else {
+        console.error('Failed to delete template:', response.error);
+        alert('Failed to delete template: ' + (response.error || 'Unknown error'));
+      }
+    } catch (error) {
+      console.error('Error deleting template:', error);
+      alert('Error deleting template: ' + (error instanceof Error ? error.message : 'Unknown error'));
+    }
+  };
+
   useEffect(() => {
     // Save content to localStorage whenever it changes
     localStorage.setItem('pensieve-content', content);
@@ -107,7 +128,7 @@ const NotepadEditor: React.FC<NotepadEditorProps> = () => {
 
   // Clear tab stop markers from content
   const clearTabStopMarkers = () => {
-    const cleanedContent = content.replace(/\u200B\d+\u200B/g, '');
+    const cleanedContent = content.replace(/\[Tab Stop \d+\]/g, '');
     setContent(cleanedContent);
   };
 
@@ -427,23 +448,6 @@ const NotepadEditor: React.FC<NotepadEditorProps> = () => {
     }
   };
 
-  const handleDeleteTemplate = async (templateId: string) => {
-    try {
-      const response = await templateApi.deleteTemplate(templateId);
-      if (response.success) {
-        setAllTemplates(prev => prev.filter(t => t.id !== templateId));
-      } else {
-        console.error('Failed to delete template:', response.error);
-        alert('Failed to delete template: ' + response.error);
-      }
-    } catch (error) {
-      console.error('Error deleting template:', error);
-      alert('Error deleting template: ' + (error instanceof Error ? error.message : 'Unknown error'));
-    }
-    
-    setShowTemplateEditor(false);
-    setEditingTemplate(null);
-  };
 
   const handleCloseTemplateEditor = () => {
     setShowTemplateEditor(false);
@@ -576,16 +580,32 @@ const NotepadEditor: React.FC<NotepadEditorProps> = () => {
                             <span className="template-icon">{template.icon}</span>
                             <span className="template-name">{template.shortcut}</span>
                             <span className="template-desc">{template.description}</span>
-                            <button 
-                              className="edit-template-btn"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                handleEditTemplate(template);
-                              }}
-                              title="Edit template"
-                            >
-                              ✏️
-                            </button>
+                            <div className="template-actions">
+                              <button 
+                                className="edit-template-btn"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleEditTemplate(template);
+                                }}
+                                title="Edit template"
+                              >
+                                ✏️
+                              </button>
+                              {!template.is_builtin && (
+                                <button 
+                                  className="delete-template-btn"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    if (window.confirm(`Are you sure you want to delete "${template.name}"?`)) {
+                                      handleDeleteTemplate(template.id);
+                                    }
+                                  }}
+                                  title="Delete template"
+                                >
+                                  🗑️
+                                </button>
+                              )}
+                            </div>
                           </div>
                         ))}
                       </div>

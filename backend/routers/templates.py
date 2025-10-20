@@ -420,6 +420,44 @@ async def get_api_key_status():
             has_key=False
         )
 
+@router.delete("/{template_id}")
+async def delete_template(template_id: str):
+    """Delete a template by ID"""
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        
+        # Check if template exists and is not built-in
+        cursor.execute("SELECT id, is_builtin FROM templates WHERE id = ?", (template_id,))
+        row = cursor.fetchone()
+        
+        if not row:
+            conn.close()
+            raise HTTPException(status_code=404, detail="Template not found")
+        
+        if row["is_builtin"]:
+            conn.close()
+            raise HTTPException(status_code=400, detail="Cannot delete built-in templates")
+        
+        # Delete the template
+        cursor.execute("DELETE FROM templates WHERE id = ?", (template_id,))
+        
+        if cursor.rowcount == 0:
+            conn.close()
+            raise HTTPException(status_code=404, detail="Template not found")
+        
+        conn.commit()
+        conn.close()
+        
+        logger.info(f"✅ Template {template_id} deleted successfully")
+        return {"success": True, "message": "Template deleted successfully"}
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"❌ Error deleting template: {e}")
+        raise HTTPException(status_code=500, detail="Failed to delete template")
+
 @router.get("/health")
 async def templates_health():
     """Health check for templates router"""

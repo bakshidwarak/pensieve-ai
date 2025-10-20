@@ -65,23 +65,23 @@ export function createNavigableTemplate(template: string): { content: string; ta
   console.log('Original template:', template);
   console.log('Original tab stops:', originalTabStops);
   
-  // Replace tab stops with invisible markers but track their positions
+  // Replace tab stops with visible placeholders and track their positions
   originalTabStops.forEach((tabStop) => {
     const start = tabStop.start + offset;
     const end = tabStop.end + offset;
     
-    // Replace with invisible marker (zero-width space + tab stop ID)
-    const marker = `\u200B${tabStop.index}\u200B`; // Zero-width space + index + zero-width space
-    content = content.substring(0, start) + marker + content.substring(end);
+    // Replace with placeholder text that's visible but distinct
+    const placeholder = tabStop.placeholder || `[Tab Stop ${tabStop.index}]`;
+    content = content.substring(0, start) + placeholder + content.substring(end);
     
-    // Create tab stop at the marker position
+    // Create tab stop at the placeholder position
     newTabStops.push({
       index: tabStop.index,
       start: start,
-      end: start + marker.length
+      end: start + placeholder.length
     });
     
-    offset += marker.length - (tabStop.end - tabStop.start);
+    offset += placeholder.length - (tabStop.end - tabStop.start);
   });
   
   console.log('Processed content:', content);
@@ -100,10 +100,11 @@ export function findCurrentTabStop(tabStops: TabStop[], cursorPosition: number):
   ) || null;
 }
 
-// Find tab stops by scanning content for markers
+// Find tab stops by scanning content for placeholders
 export function findTabStopsInContent(content: string): TabStop[] {
   const tabStops: TabStop[] = [];
-  const markerRegex = /\u200B(\d+)\u200B/g; // Zero-width space + number + zero-width space
+  // Look for [Tab Stop X] patterns
+  const markerRegex = /\[Tab Stop (\d+)\]/g;
   let match;
   
   while ((match = markerRegex.exec(content)) !== null) {

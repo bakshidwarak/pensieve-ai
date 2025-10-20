@@ -6,9 +6,10 @@ interface ButtonBarProps {
   buttons: (ButtonTemplate | CustomButton)[];
   onButtonClick: (button: ButtonTemplate | CustomButton) => void;
   onAddCustom: () => void;
+  onDeleteTemplate?: (templateId: string) => void;
 }
 
-const ButtonBar: React.FC<ButtonBarProps> = ({ buttons, onButtonClick, onAddCustom }) => {
+const ButtonBar: React.FC<ButtonBarProps> = ({ buttons, onButtonClick, onAddCustom, onDeleteTemplate }) => {
   return (
     <div className="button-bar">
       <div className="button-bar-header">
@@ -20,16 +21,31 @@ const ButtonBar: React.FC<ButtonBarProps> = ({ buttons, onButtonClick, onAddCust
       
       <div className="buttons-grid">
         {buttons.map((button) => (
-          <button
-            key={button.id}
-            className={`tool-button ${button.isCustom ? 'custom-button' : ''}`}
-            onClick={() => onButtonClick(button)}
-            title={button.template.title}
-          >
-            <span className="button-icon">{(button as any).icon || '📝'}</span>
-            <span className="button-name">{button.name}</span>
-            {button.isCustom && <span className="custom-indicator">★</span>}
-          </button>
+          <div key={button.id} className="button-container">
+            <button
+              className={`tool-button ${button.isCustom ? 'custom-button' : ''}`}
+              onClick={() => onButtonClick(button)}
+              title={button.template.title}
+            >
+              <span className="button-icon">{(button as any).icon || '📝'}</span>
+              <span className="button-name">{button.name}</span>
+              {button.isCustom && <span className="custom-indicator">★</span>}
+            </button>
+            {button.isCustom && onDeleteTemplate && (
+              <button
+                className="delete-button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (window.confirm(`Are you sure you want to delete "${button.name}"?`)) {
+                    onDeleteTemplate(button.id);
+                  }
+                }}
+                title="Delete template"
+              >
+                ×
+              </button>
+            )}
+          </div>
         ))}
       </div>
       
