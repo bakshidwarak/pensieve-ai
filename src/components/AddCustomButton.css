@@ -1,0 +1,366 @@
+.add-custom-button {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #0d1117;
+}
+
+.add-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background-color: #161b22;
+  border-bottom: 1px solid #30363d;
+}
+
+.add-header h2 {
+  color: #c9d1d9;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.close-button {
+  background-color: transparent;
+  border: none;
+  color: #8b949e;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.close-button:hover {
+  background-color: #21262d;
+  color: #c9d1d9;
+}
+
+.close-icon {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.add-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem;
+}
+
+.form-section {
+  margin-bottom: 2rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-section h3 {
+  color: #c9d1d9;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #30363d;
+}
+
+.field-group {
+  margin-bottom: 1.5rem;
+}
+
+.field-label {
+  display: block;
+  color: #c9d1d9;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.form-input {
+  width: 100%;
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  color: #c9d1d9;
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #58a6ff;
+  box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.1);
+}
+
+.form-input::placeholder {
+  color: #6e7681;
+}
+
+.icon-selector {
+  position: relative;
+}
+
+.icon-input {
+  width: 60px;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.icon-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+}
+
+.icon-option {
+  background-color: transparent;
+  border: 1px solid #30363d;
+  color: #c9d1d9;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.icon-option:hover {
+  background-color: #21262d;
+  border-color: #58a6ff;
+}
+
+.icon-option.selected {
+  background-color: #58a6ff;
+  border-color: #58a6ff;
+  color: white;
+}
+
+.field-builder {
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.new-field-form {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #30363d;
+}
+
+.field-inputs {
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr auto;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #c9d1d9;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #58a6ff;
+}
+
+.add-field-btn {
+  background-color: #238636;
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.add-field-btn:hover:not(:disabled) {
+  background-color: #2ea043;
+}
+
+.add-field-btn:disabled {
+  background-color: #484f58;
+  color: #6e7681;
+  cursor: not-allowed;
+}
+
+.fields-list {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.field-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background-color: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+}
+
+.field-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.field-label-text {
+  color: #c9d1d9;
+  font-weight: 500;
+}
+
+.field-type {
+  background-color: #7c3aed;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
+.required-badge {
+  background-color: #f85149;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+}
+
+.remove-field-btn {
+  background-color: #f85149;
+  border: none;
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+.remove-field-btn:hover {
+  background-color: #da3633;
+}
+
+.add-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  background-color: #161b22;
+  border-top: 1px solid #30363d;
+}
+
+.action-button {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.action-button.primary {
+  background-color: #238636;
+  color: white;
+  border-color: #238636;
+}
+
+.action-button.primary:hover:not(:disabled) {
+  background-color: #2ea043;
+  border-color: #2ea043;
+}
+
+.action-button.primary:disabled {
+  background-color: #484f58;
+  color: #6e7681;
+  cursor: not-allowed;
+}
+
+.action-button.secondary {
+  background-color: transparent;
+  color: #c9d1d9;
+  border-color: #30363d;
+}
+
+.action-button.secondary:hover {
+  background-color: #21262d;
+  border-color: #484f58;
+}
+
+/* Scrollbar styling */
+.add-content::-webkit-scrollbar,
+.fields-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.add-content::-webkit-scrollbar-track,
+.fields-list::-webkit-scrollbar-track {
+  background: #0d1117;
+}
+
+.add-content::-webkit-scrollbar-thumb,
+.fields-list::-webkit-scrollbar-thumb {
+  background: #30363d;
+  border-radius: 4px;
+}
+
+.add-content::-webkit-scrollbar-thumb:hover,
+.fields-list::-webkit-scrollbar-thumb:hover {
+  background: #484f58;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .add-header {
+    padding: 1rem;
+  }
+  
+  .add-content {
+    padding: 1rem;
+  }
+  
+  .field-inputs {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  
+  .add-footer {
+    padding: 1rem;
+    flex-direction: column;
+  }
+  
+  .action-button {
+    width: 100%;
+  }
+}

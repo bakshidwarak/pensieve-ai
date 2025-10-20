@@ -1,0 +1,81 @@
+.terminal-header {
+  height: 40px;
+  background-color: #161b22;
+  border-bottom: 1px solid #30363d;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  user-select: none;
+}
+
+.terminal-controls {
+  display: flex;
+  gap: 8px;
+  margin-right: 1rem;
+}
+
+.control-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.control-dot:hover {
+  opacity: 0.8;
+}
+
+.control-dot.red {
+  background-color: #ff5f56;
+}
+
+.control-dot.yellow {
+  background-color: #ffbd2e;
+}
+
+.control-dot.green {
+  background-color: #27ca3f;
+}
+
+.terminal-title {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: #c9d1d9;
+}
+
+.terminal-icon {
+  font-size: 1.2rem;
+}
+
+.terminal-menu {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.menu-item {
+  color: #8b949e;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.menu-item:hover {
+  color: #c9d1d9;
+  background-color: #21262d;
+}
+
+@media (max-width: 768px) {
+  .terminal-menu {
+    display: none;
+  }
+  
+  .terminal-title {
+    font-size: 0.9rem;
+  }
+}

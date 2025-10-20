@@ -1,0 +1,353 @@
+.template-editor-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+}
+
+.template-editor-content {
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.template-editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid #30363d;
+}
+
+.template-editor-header h2 {
+  color: #c9d1d9;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  color: #8b949e;
+  font-size: 1.5rem;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.close-button:hover {
+  background-color: #21262d;
+  color: #c9d1d9;
+}
+
+.builtin-notice {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: rgba(88, 166, 255, 0.1);
+  border-left: 3px solid #58a6ff;
+  color: #c9d1d9;
+  font-size: 0.9rem;
+}
+
+.notice-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.template-editor-form {
+  padding: 1.5rem;
+  flex: 1;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  color: #c9d1d9;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.form-group input {
+  background-color: #0d1117;
+  border: 1px solid #30363d;
+  color: #c9d1d9;
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #58a6ff;
+  box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.1);
+}
+
+.form-group input::placeholder {
+  color: #6e7681;
+}
+
+.icon-selector {
+  position: relative;
+}
+
+.icon-selector input {
+  width: 60px;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.icon-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background-color: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+}
+
+.icon-option {
+  background-color: transparent;
+  border: 1px solid #30363d;
+  color: #c9d1d9;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.icon-option:hover {
+  background-color: #21262d;
+  border-color: #58a6ff;
+}
+
+.icon-option.selected {
+  background-color: #58a6ff;
+  border-color: #58a6ff;
+  color: white;
+}
+
+.template-editor-container {
+  position: relative;
+}
+
+.tab-stop-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  background-color: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  flex-wrap: wrap;
+}
+
+.tab-stop-buttons span {
+  color: #8b949e;
+  font-size: 0.8rem;
+  margin-right: 0.5rem;
+}
+
+.tab-stop-btn {
+  background-color: #21262d;
+  border: 1px solid #30363d;
+  color: #c9d1d9;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+  font-size: 0.8rem;
+  transition: all 0.2s ease;
+}
+
+.tab-stop-btn:hover {
+  background-color: #30363d;
+  border-color: #58a6ff;
+  color: #58a6ff;
+}
+
+.tab-stop-btn.final {
+  background-color: #7c3aed;
+  border-color: #7c3aed;
+  color: white;
+}
+
+.tab-stop-btn.final:hover {
+  background-color: #8b5cf6;
+  border-color: #8b5cf6;
+}
+
+.template-editor-container textarea {
+  width: 100%;
+  background-color: #0d1117;
+  border: 1px solid #30363d;
+  color: #c9d1d9;
+  padding: 1rem;
+  border-radius: 6px;
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  resize: vertical;
+  min-height: 200px;
+}
+
+.template-editor-container textarea:focus {
+  outline: none;
+  border-color: #58a6ff;
+  box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.1);
+}
+
+.template-editor-container textarea::placeholder {
+  color: #6e7681;
+}
+
+.template-preview {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+}
+
+.template-preview h4 {
+  color: #c9d1d9;
+  margin: 0 0 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+.template-preview pre {
+  color: #8b949e;
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+  font-size: 0.8rem;
+  white-space: pre-wrap;
+  margin: 0;
+}
+
+.template-editor-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-top: 1px solid #30363d;
+}
+
+.delete-button {
+  background-color: #f85149;
+  border: 1px solid #f85149;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.delete-button:hover {
+  background-color: #da3633;
+  border-color: #da3633;
+}
+
+.footer-buttons {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.cancel-button {
+  background-color: transparent;
+  border: 1px solid #30363d;
+  color: #c9d1d9;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.cancel-button:hover {
+  background-color: #21262d;
+  border-color: #484f58;
+}
+
+.save-button {
+  background-color: #238636;
+  border: 1px solid #238636;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.save-button:hover {
+  background-color: #2ea043;
+  border-color: #2ea043;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .template-editor-modal {
+    padding: 1rem;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .template-editor-footer {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+  
+  .footer-buttons {
+    justify-content: center;
+  }
+  
+  .tab-stop-buttons {
+    flex-wrap: wrap;
+  }
+}
