@@ -512,67 +512,6 @@ const NotepadEditor: React.FC<NotepadEditorProps> = () => {
                     >
                       + New Template
                     </button>
-                  <button 
-                    className="create-template-btn"
-                    onClick={async () => {
-                      console.log('Testing API connection...');
-                      try {
-                        // Test direct fetch first
-                        const directResponse = await fetch('http://localhost:3001/api/health');
-                        const directData = await directResponse.json();
-                        console.log('Direct fetch response:', directData);
-                        
-                        // Test API service
-                        const response = await templateApi.healthCheck();
-                        console.log('API service response:', response);
-                        
-                        alert(`Direct: ${directResponse.ok ? 'OK' : 'Failed'}\nAPI Service: ${response.success ? 'OK' : 'Failed'}`);
-                      } catch (error) {
-                        console.error('Test failed:', error);
-                        alert('Test failed: ' + (error instanceof Error ? error.message : 'Unknown error'));
-                      }
-                    }}
-                    title="Test API connection"
-                    style={{ backgroundColor: '#7c3aed', fontSize: '0.7rem' }}
-                  >
-                    Test API
-                  </button>
-                  <button 
-                    className="create-template-btn"
-                    onClick={async () => {
-                      console.log('Testing template creation...');
-                      try {
-                        const testTemplate = {
-                          name: 'Quick Test',
-                          shortcut: 'quicktest',
-                          description: 'Quick test template',
-                          icon: '⚡',
-                          template: '[TEST]\n$1\n[ENDTEST]$0'
-                        };
-                        
-                        const response = await templateApi.createTemplate(testTemplate);
-                        console.log('Create template response:', response);
-                        
-                        if (response.success) {
-                          alert('Template created successfully!');
-                          // Reload templates
-                          const reloadResponse = await templateApi.getAllTemplates();
-                          if (reloadResponse.success && reloadResponse.data) {
-                            setAllTemplates(reloadResponse.data);
-                          }
-                        } else {
-                          alert('Failed to create template: ' + response.error);
-                        }
-                      } catch (error) {
-                        console.error('Template creation failed:', error);
-                        alert('Template creation failed: ' + (error instanceof Error ? error.message : 'Unknown error'));
-                      }
-                    }}
-                    title="Test template creation"
-                    style={{ backgroundColor: '#f59e0b', fontSize: '0.7rem' }}
-                  >
-                    Test Create
-                  </button>
                 </div>
               </div>
               <p>Click any template to insert it, or type the keyword and press Tab:</p>
