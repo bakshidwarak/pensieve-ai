@@ -8,9 +8,13 @@ from models.schemas import (
 )
 # Defer AgentSystem import to avoid hard failure if LLM deps are missing
 try:
-    from agents.agent_system import AgentSystem  # type: ignore
+    from agents.langgraph_agent import LangGraphAgentSystem  # type: ignore
+    AgentSystem = LangGraphAgentSystem  # Use LangGraph version
 except Exception:
-    AgentSystem = None  # type: ignore
+    try:
+        from agents.agent_system import AgentSystem  # type: ignore
+    except Exception:
+        AgentSystem = None  # type: ignore
 from services.document_ingestion import DocumentIngestionService
 
 logger = logging.getLogger(__name__)
