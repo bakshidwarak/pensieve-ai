@@ -71,13 +71,13 @@ env/
 *.sqlite3
 
 # Data directories (keep structure but not content)
-backend_python/data/backups/*
-!backend_python/data/backups/.gitkeep
-backend_python/data/chroma_db/*
-!backend_python/data/chroma_db/.gitkeep
+backend/data/backups/*
+!backend/data/backups/.gitkeep
+backend/data/chroma_db/*
+!backend/data/chroma_db/.gitkeep
 
 # API keys and secrets
-backend_python/data/config.json
+backend/data/config.json
 
 # Cursor IDE
 .cursor/

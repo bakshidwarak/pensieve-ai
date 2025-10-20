@@ -1,6 +1,6 @@
-# Pensieve - IDE for Leaders
+# Pensieve AI - IDE for Leaders
 
-Pensieve is a notepad-style text editor designed specifically for leaders and managers. It provides automatic template expansion when you type specific keywords, making it easy to quickly create structured notes and documents.
+Pensieve AI is an intelligent notepad-style text editor designed specifically for leaders and managers. It combines automatic template expansion with AI-powered chat capabilities, making it easy to create structured notes, manage documents, and get intelligent insights from your content.
 
 ## Features
 
@@ -10,6 +10,13 @@ Pensieve is a notepad-style text editor designed specifically for leaders and ma
 - **TextMate-style Snippets**: Instant template expansion with placeholder variables
 - **Auto-save**: Content is automatically saved to browser storage
 - **Real-time Stats**: Word and character count in the header
+
+### AI-Powered Features
+- **Intelligent Chat**: Ask questions about your documents and get AI-powered responses
+- **Document Processing**: Automatically ingest and vectorize your content
+- **Semantic Search**: Find relevant information using natural language queries
+- **Template Management**: Create, edit, and manage custom templates
+- **API Key Management**: Secure settings for OpenAI API integration
 
 ### Built-in Templates
 - **`meet`** - Meeting notes with attendees, agenda, and follow-ups
@@ -38,6 +45,14 @@ Pensieve is a notepad-style text editor designed specifically for leaders and ma
 
 ## Getting Started
 
+### Prerequisites
+- Node.js (v16 or higher)
+- Python 3.11
+- Qdrant (vector database)
+- OpenAI API key
+
+### Frontend Setup
+
 1. Install dependencies:
    ```bash
    npm install
@@ -49,6 +64,57 @@ Pensieve is a notepad-style text editor designed specifically for leaders and ma
    ```
 
 3. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+### Backend Setup
+
+1. Navigate to the backend directory:
+   ```bash
+   cd backend
+   ```
+
+2. Create a virtual environment:
+   ```bash
+   python3.11 -m venv .venv
+   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+   ```
+
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. Start Qdrant (vector database):
+   ```bash
+   docker run --name qdrant -p 6333:6333 -p 6334:6334 -d qdrant/qdrant
+   ```
+
+5. Start the backend server:
+   ```bash
+   uvicorn main:app --host 0.0.0.0 --port 3001 --reload
+   ```
+
+6. Configure your OpenAI API key in the settings UI (⚙️ button in the app)
+
+## Tech Stack
+
+### Frontend
+- **React** with TypeScript
+- **CSS** for styling
+- **Local Storage** for persistence
+
+### Backend
+- **Python 3.11** with FastAPI
+- **Pydantic** for data validation
+- **SQLite** for template storage
+- **Qdrant** for vector database
+- **OpenAI API** for embeddings and chat
+- **LangChain** for AI integration
+
+### AI Features
+- **RAG (Retrieval Augmented Generation)** for intelligent responses
+- **Semantic Search** using vector embeddings
+- **Document Processing** with automatic chunking
+- **Template Management** with CRUD operations
 
 ## Usage
 
