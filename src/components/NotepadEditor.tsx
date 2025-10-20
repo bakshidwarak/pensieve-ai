@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import ReactMarkdown from 'react-markdown';
 import { processTemplate } from '../types/commands';
 import { createNavigableTemplate, TabStop, findTabStopsInContent, getNextTabStop, getCurrentTabStop } from '../utils/tabStops';
 import TemplateEditor from './TemplateEditor';
@@ -29,6 +30,7 @@ const NotepadEditor: React.FC<NotepadEditorProps> = () => {
   const [chatInput, setChatInput] = useState('');
   const [isChatLoading, setIsChatLoading] = useState(false);
   const chatInputRef = useRef<HTMLInputElement>(null);
+  const chatMessagesRef = useRef<HTMLDivElement>(null);
 
 
   useEffect(() => {
@@ -84,6 +86,13 @@ const NotepadEditor: React.FC<NotepadEditorProps> = () => {
     // Save content to localStorage whenever it changes
     localStorage.setItem('pensieve-content', content);
   }, [content]);
+
+  // Auto-scroll chat to bottom when new messages are added
+  useEffect(() => {
+    if (chatMessagesRef.current) {
+      chatMessagesRef.current.scrollTop = chatMessagesRef.current.scrollHeight;
+    }
+  }, [chatMessages, isChatLoading]);
 
 
   const autoIngestTimeout = useRef<NodeJS.Timeout | null>(null);
@@ -377,6 +386,12 @@ const NotepadEditor: React.FC<NotepadEditorProps> = () => {
       setChatMessages(prev => [...prev, errorMessage]);
     } finally {
       setIsChatLoading(false);
+      // Auto-focus input after response
+      setTimeout(() => {
+        if (chatInputRef.current) {
+          chatInputRef.current.focus();
+        }
+      }, 100);
     }
   };
 
@@ -643,7 +658,7 @@ const NotepadEditor: React.FC<NotepadEditorProps> = () => {
             <h3>💬 Chat with your notes</h3>
           </div>
           
-          <div className="chat-messages">
+          <div className="chat-messages" ref={chatMessagesRef}>
             {chatMessages.length === 0 ? (
               <div className="chat-welcome">
                 <p>Ask me anything about your notes!</p>
@@ -655,7 +670,11 @@ const NotepadEditor: React.FC<NotepadEditorProps> = () => {
               chatMessages.map((message) => (
                 <div key={message.id} className={`chat-message ${message.type}`}>
                   <div className="message-content">
-                    {message.content}
+                    {message.type === 'assistant' ? (
+                      <ReactMarkdown>{message.content}</ReactMarkdown>
+                    ) : (
+                      message.content
+                    )}
                   </div>
                   <div className="message-time">
                     {message.timestamp.toLocaleTimeString()}

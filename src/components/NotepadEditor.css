@@ -487,6 +487,7 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  max-height: calc(100vh - 200px); /* Ensure it doesn't grow too tall */
 }
 
 .chat-welcome {
@@ -537,6 +538,76 @@
   color: #6a6d6f;
   margin-top: 4px;
   text-align: right;
+}
+
+/* Markdown styling for assistant messages */
+.message-content h1,
+.message-content h2,
+.message-content h3,
+.message-content h4,
+.message-content h5,
+.message-content h6 {
+  margin: 8px 0 4px 0;
+  font-weight: 600;
+  color: #a9b7c6;
+}
+
+.message-content h1 { font-size: 16px; }
+.message-content h2 { font-size: 15px; }
+.message-content h3 { font-size: 14px; }
+.message-content h4 { font-size: 13px; }
+.message-content h5 { font-size: 12px; }
+.message-content h6 { font-size: 11px; }
+
+.message-content p {
+  margin: 4px 0;
+}
+
+.message-content ul,
+.message-content ol {
+  margin: 4px 0;
+  padding-left: 16px;
+}
+
+.message-content li {
+  margin: 2px 0;
+}
+
+.message-content code {
+  background: #3c4043;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 11px;
+  color: #f8f8f2;
+}
+
+.message-content pre {
+  background: #3c4043;
+  padding: 8px;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin: 4px 0;
+}
+
+.message-content pre code {
+  background: none;
+  padding: 0;
+}
+
+.message-content blockquote {
+  border-left: 3px solid #555;
+  margin: 4px 0;
+  padding-left: 8px;
+  color: #888;
+}
+
+.message-content strong {
+  font-weight: 600;
+}
+
+.message-content em {
+  font-style: italic;
 }
 
 .chat-message.assistant .message-time {

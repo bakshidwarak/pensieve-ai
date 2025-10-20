@@ -18,12 +18,14 @@ logger = logging.getLogger(__name__)
 router = APIRouter()
 
 # Initialize services
-agent_system = AgentSystem() if AgentSystem else None
+agent_system = None  # Will be initialized in startup_event
 document_ingestion = DocumentIngestionService()
 
 # Initialize on startup
 @router.on_event("startup")
 async def startup_event():
+    global agent_system
+    
     # Load API key from config file if available
     try:
         import json
@@ -37,6 +39,17 @@ async def startup_event():
                     logger.info("✅ API key loaded from config file")
     except Exception as e:
         logger.warning(f"⚠️ Could not load API key from config: {e}")
+    
+    # Initialize agent system after API key is loaded
+    try:
+        if AgentSystem:
+            agent_system = AgentSystem()
+            logger.info("✅ Agent system initialized successfully")
+        else:
+            logger.warning("⚠️ AgentSystem not available - RAG features disabled")
+    except Exception as e:
+        logger.error(f"❌ Failed to initialize agent system: {e}")
+        agent_system = None
     
     await document_ingestion.initialize()
 
