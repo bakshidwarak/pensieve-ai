@@ -59,6 +59,12 @@ wheels/
 *.egg
 MANIFEST
 
+# Python virtual environment
+backend/.venv/
+backend/venv/
+backend/ENV/
+backend/env/
+
 # Virtual environments
 .venv/
 venv/
