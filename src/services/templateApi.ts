@@ -51,7 +51,7 @@ class TemplateApiService {
 
   // Get all templates
   async getAllTemplates(): Promise<ApiResponse<Template[]>> {
-    return this.request<Template[]>('/templates');
+    return this.request<Template[]>('/templates/');
   }
 
   // Get template by ID
@@ -62,7 +62,7 @@ class TemplateApiService {
   // Create new template
   async createTemplate(template: Omit<Template, 'id' | 'is_builtin' | 'created_at' | 'updated_at'>): Promise<ApiResponse<Template>> {
     console.log('API: Creating template:', template);
-    return this.request<Template>('/templates', {
+    return this.request<Template>('/templates/', {
       method: 'POST',
       body: JSON.stringify(template),
     });
