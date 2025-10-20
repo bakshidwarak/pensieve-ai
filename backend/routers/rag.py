@@ -7,12 +7,19 @@ from models.schemas import (
     ClearAndIngestRequest, StatsResponse
 )
 # Defer AgentSystem import to avoid hard failure if LLM deps are missing
+# Try Graph Agent first, then fallback to original
 try:
-    from agents.agent_system import AgentSystem  # type: ignore
-    print("✅ Using original AgentSystem")
+    from agents.graph_agent import GraphAgentSystem  # type: ignore
+    AgentSystem = GraphAgentSystem  # Use Graph version
+    print("✅ Using Graph AgentSystem")
 except Exception as e:
-    print(f"⚠️ AgentSystem failed: {e}")
-    AgentSystem = None  # type: ignore
+    print(f"⚠️ Graph AgentSystem failed: {e}")
+    try:
+        from agents.agent_system import AgentSystem  # type: ignore
+        print("✅ Using original AgentSystem as fallback")
+    except Exception as e2:
+        print(f"⚠️ Original AgentSystem also failed: {e2}")
+        AgentSystem = None  # type: ignore
 from services.document_ingestion import DocumentIngestionService
 
 logger = logging.getLogger(__name__)

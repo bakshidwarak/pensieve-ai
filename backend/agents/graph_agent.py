@@ -1,11 +1,10 @@
 import os
 import json
 import logging
-from typing import List, Dict, Any, Optional, TypedDict, Annotated
+import asyncio
+from typing import List, Dict, Any, Optional, TypedDict
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage, SystemMessage, BaseMessage
-from langgraph.graph import StateGraph, END
-from langgraph.checkpoint.memory import MemorySaver
 
 from services.vector_db import VectorDBService
 from services.web_search import WebSearchService
@@ -14,7 +13,7 @@ from models.schemas import AgentAnalysis, SearchResult, WebSearchResult
 logger = logging.getLogger(__name__)
 
 class AgentState(TypedDict):
-    """State schema for the LangGraph agent system"""
+    """State schema for the graph-based agent system"""
     # Input
     query: str
     context: str
@@ -31,10 +30,10 @@ class AgentState(TypedDict):
     error: Optional[str]
     
     # Metadata
-    messages: Annotated[List[BaseMessage], "add_messages"]
+    messages: List[BaseMessage]
 
-class LangGraphAgentSystem:
-    """LangGraph-based agent system for RAG orchestration"""
+class GraphAgentSystem:
+    """Graph-based agent system for RAG orchestration (simplified LangGraph alternative)"""
     
     def __init__(self):
         self.llm = ChatOpenAI(
@@ -45,69 +44,96 @@ class LangGraphAgentSystem:
         
         self.vector_db = VectorDBService()
         self.web_search = WebSearchService()
-        
-        # Create the graph
-        self.graph = self._create_graph()
-        
-        # Memory for conversation state
-        self.memory = MemorySaver()
     
-    def _create_graph(self) -> StateGraph:
-        """Create the LangGraph workflow"""
-        
-        # Create the state graph
-        workflow = StateGraph(AgentState)
-        
-        # Add nodes
-        workflow.add_node("analyze", self._analyze_node)
-        workflow.add_node("meeting_agent", self._meeting_agent_node)
-        workflow.add_node("web_agent", self._web_agent_node)
-        workflow.add_node("synthesize", self._synthesize_node)
-        workflow.add_node("error_handler", self._error_handler_node)
-        
-        # Add edges
-        workflow.set_entry_point("analyze")
-        
-        # Conditional routing from analyze
-        workflow.add_conditional_edges(
-            "analyze",
-            self._route_from_analysis,
-            {
-                "meeting_agent": "meeting_agent",
-                "web_agent": "web_agent", 
-                "both": "meeting_agent",  # Start with meeting, then web
-                "synthesize": "synthesize",
-                "error": "error_handler"
+    async def process_query(self, query: str, context: str = "") -> Dict[str, Any]:
+        """Process query through the graph-based agent system"""
+        try:
+            logger.info("🚀 Processing query through Graph Agent System...")
+            
+            # Initialize vector DB if needed
+            await self.vector_db.initialize()
+            
+            # Create initial state
+            state = AgentState(
+                query=query,
+                context=context,
+                analysis=None,
+                meeting_results=[],
+                web_results=[],
+                response="",
+                error=None,
+                messages=[]
+            )
+            
+            # Execute the graph workflow
+            final_state = await self._execute_graph(state)
+            
+            # Extract results
+            meeting_count = len(final_state.get("meeting_results", []))
+            web_count = len(final_state.get("web_results", []))
+            
+            return {
+                "success": True,
+                "response": final_state.get("response", "No response generated"),
+                "meeting_results": final_state.get("meeting_results", []),
+                "web_results": final_state.get("web_results", []),
+                "sources": {
+                    "meeting_notes": meeting_count,
+                    "web_results": web_count
+                },
+                "analysis": final_state.get("analysis").dict() if final_state.get("analysis") else None
             }
-        )
-        
-        # From meeting agent
-        workflow.add_conditional_edges(
-            "meeting_agent",
-            self._route_from_meeting,
-            {
-                "web_agent": "web_agent",
-                "synthesize": "synthesize",
-                "error": "error_handler"
+            
+        except Exception as e:
+            logger.error(f"❌ Graph agent system error: {e}")
+            return {
+                "success": False,
+                "response": f"Sorry, there was an error processing your request: {str(e)}",
+                "error": str(e),
+                "meeting_results": [],
+                "web_results": [],
+                "sources": {"meeting_notes": 0, "web_results": 0}
             }
-        )
-        
-        # From web agent
-        workflow.add_edge("web_agent", "synthesize")
-        
-        # From synthesize
-        workflow.add_edge("synthesize", END)
-        
-        # From error handler
-        workflow.add_edge("error_handler", END)
-        
-        return workflow.compile(checkpointer=self.memory)
+    
+    async def _execute_graph(self, state: AgentState) -> AgentState:
+        """Execute the graph workflow"""
+        try:
+            # Step 1: Analyze query
+            logger.info("🔍 Step 1: Analyzing query...")
+            state = await self._analyze_node(state)
+            
+            if state.get("error"):
+                return await self._error_handler_node(state)
+            
+            # Step 2: Execute agents based on analysis
+            analysis = state.get("analysis")
+            if not analysis:
+                return await self._error_handler_node(state)
+            
+            # Run meeting agent if needed
+            if analysis.needs_meeting_search:
+                logger.info("📝 Step 2a: Running meeting agent...")
+                state = await self._meeting_agent_node(state)
+            
+            # Run web agent if needed
+            if analysis.needs_web_search:
+                logger.info("🌐 Step 2b: Running web agent...")
+                state = await self._web_agent_node(state)
+            
+            # Step 3: Synthesize results
+            logger.info("🧠 Step 3: Synthesizing results...")
+            state = await self._synthesize_node(state)
+            
+            return state
+            
+        except Exception as e:
+            logger.error(f"❌ Graph execution error: {e}")
+            state["error"] = f"Graph execution failed: {str(e)}"
+            return await self._error_handler_node(state)
     
     async def _analyze_node(self, state: AgentState) -> AgentState:
         """Analyze the query to determine which agents to run"""
         try:
-            logger.info("🔍 Analyzing query...")
-            
             analysis = await self._analyze_query(state["query"], state["context"])
             
             return {
@@ -124,11 +150,6 @@ class LangGraphAgentSystem:
     async def _meeting_agent_node(self, state: AgentState) -> AgentState:
         """Run the meeting notes agent"""
         try:
-            logger.info("📝 Running meeting agent...")
-            
-            # Initialize vector DB if needed
-            await self.vector_db.initialize()
-            
             # Search meeting notes
             search_results = await self.vector_db.search_documents(
                 query=state["query"],
@@ -155,10 +176,22 @@ class LangGraphAgentSystem:
     async def _web_agent_node(self, state: AgentState) -> AgentState:
         """Run the web search agent"""
         try:
-            logger.info("🌐 Running web agent...")
-            
             # Perform web search
-            web_results = await self.web_search.search(state["query"])
+            web_results = await self.web_search.search_technical_content(state["query"], state["context"])
+            
+            if web_results["success"]:
+                processed_results = []
+                for result in web_results["results"]:
+                    processed_results.append(WebSearchResult(
+                        title=result.get("title", ""),
+                        content=result.get("snippet", "") or result.get("detailed_content", ""),
+                        url=result.get("url", ""),
+                        source="web_search",
+                        relevance=0.8
+                    ))
+                web_results = processed_results
+            else:
+                web_results = []
             
             return {
                 **state,
@@ -175,8 +208,6 @@ class LangGraphAgentSystem:
     async def _synthesize_node(self, state: AgentState) -> AgentState:
         """Synthesize results from all agents into final response"""
         try:
-            logger.info("🧠 Synthesizing results...")
-            
             # Prepare context for synthesis
             context_parts = []
             
@@ -232,32 +263,6 @@ Format your response in markdown for better readability."""),
             **state,
             "response": f"Sorry, there was an error processing your request: {error_msg}"
         }
-    
-    def _route_from_analysis(self, state: AgentState) -> str:
-        """Route based on analysis results"""
-        analysis = state.get("analysis")
-        if not analysis:
-            return "error"
-        
-        if analysis.needs_meeting_search and analysis.needs_web_search:
-            return "both"
-        elif analysis.needs_meeting_search:
-            return "meeting_agent"
-        elif analysis.needs_web_search:
-            return "web_agent"
-        else:
-            return "synthesize"
-    
-    def _route_from_meeting(self, state: AgentState) -> str:
-        """Route from meeting agent based on analysis"""
-        analysis = state.get("analysis")
-        if not analysis:
-            return "synthesize"
-        
-        if analysis.needs_web_search:
-            return "web_agent"
-        else:
-            return "synthesize"
     
     async def _analyze_query(self, query: str, context: str = "") -> AgentAnalysis:
         """Analyze the query to determine which agents to run"""
@@ -340,57 +345,7 @@ Respond with JSON in this format:
         formatted = []
         for i, result in enumerate(results, 1):
             formatted.append(f"{i}. {result.title}")
-            formatted.append(f"   {result.snippet}")
+            formatted.append(f"   {result.content}")
             formatted.append(f"   URL: {result.url}")
         
         return "\n".join(formatted)
-    
-    async def process_query(self, query: str, context: str = "") -> Dict[str, Any]:
-        """Process query through the LangGraph agent system"""
-        try:
-            logger.info("🚀 Processing query through LangGraph agent system...")
-            
-            # Initialize vector DB if needed
-            await self.vector_db.initialize()
-            
-            # Create initial state
-            initial_state = AgentState(
-                query=query,
-                context=context,
-                analysis=None,
-                meeting_results=[],
-                web_results=[],
-                response="",
-                error=None,
-                messages=[]
-            )
-            
-            # Run the graph
-            result = await self.graph.ainvoke(initial_state)
-            
-            # Extract results
-            meeting_count = len(result.get("meeting_results", []))
-            web_count = len(result.get("web_results", []))
-            
-            return {
-                "success": True,
-                "response": result.get("response", "No response generated"),
-                "meeting_results": result.get("meeting_results", []),
-                "web_results": result.get("web_results", []),
-                "sources": {
-                    "meeting_notes": meeting_count,
-                    "web_results": web_count
-                },
-                "analysis": result.get("analysis")
-            }
-            
-        except Exception as e:
-            logger.error(f"❌ LangGraph agent system error: {e}")
-            return {
-                "success": False,
-                "response": f"Sorry, there was an error processing your request: {str(e)}",
-                "error": str(e),
-                "meeting_results": [],
-                "web_results": [],
-                "sources": {"meeting_notes": 0, "web_results": 0}
-            }
