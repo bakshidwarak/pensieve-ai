@@ -1,0 +1,36 @@
+[MEETING] Title: Interview: Marketing Specialist (Candidate: Ben Carter) Time: 10/21/2025, 
+12:16:55 PM Attendees: Ben Carter, $YOURS_TRULY Notes: [NOTE] Good grasp of SEO and 
+paid advertising. Ben Carter showed initiative by researching our competitors before the 
+interview. Weak on B2B content strategy. [ENDNOTE] [ENDMEETING] 
+ 
+[MEETING] Title: Project Nebula - Widget Implementation Time: 10/21/2025, 12:16:55 PM 
+Attendees: Maya Singh, Marcus Diaz, $YOURS_TRULY Notes: [NOTE] Finalized the design 
+for the customizable dashboard widgets. Marcus estimated 2 weeks for the backend API work. 
+Maya will mock up all 5 initial widgets. [ENDNOTE] [TODO] Set up a recurring sync for Maya 
+and Marcus to track widget progress. [ENDTODO] [ENDMEETING] 
+ 
+[MEETING] Title: 1:1 with Ben Kuo Time: 10/21/2025, 12:16:55 PM Attendees: Ben Kuo, 
+$YOURS_TRULY Notes: [NOTE] Ben is interested in speaking at an external data science 
+conference. Agreed to sponsor his attendance. He will submit an abstract on the 'Atlas' data 
+ingestion pipeline. [ENDNOTE] [FEEDBACK] FOR Ben Kuo FROM $YOURS_TRULY The 
+conference abstract idea is brilliant for team visibility![MEETING] [ENDMEETING] 
+ 
+[MEETING] Title: Project Phoenix - New Feature Scoping (Notifications) Time: 10/21/2025, 
+12:16:55 PM Attendees: Alex Johnson, Sophia Reyes, $YOURS_TRULY Notes: [NOTE] 
+Scoped out the 'Real-time Notifications' feature. Sophia defined the MVP as email and in-app 
+only. Alex estimated 4 sprints for implementation. Need to check legal constraints on SMS 
+notifications (Phase 2). [ENDNOTE] [TODO] Consult with the Legal team on SMS notification 
+compliance for Phase 2. [ENDTODO] [ENDMEETING] 
+ 
+[MEETING] Title: All-Hands Meeting - Quarterly Town Hall Time: 10/21/2025, 12:16:55 PM 
+Attendees: (Entire Team), $YOURS_TRULY Notes: [NOTE] Announced the successful launch 
+of Project Triton. Highlighted the 'Global Dynamics' win. Q&A revealed a desire for better 
+inter-team communication. Random thought: The CEO’s microphone kept cutting out, very 
+distracting. [ENDNOTE] [ENDMEETING] 
+ 
+[MEETING] Title: Project Apollo - Cost Optimization Phase 1 Time: 10/21/2025, 12:16:55 PM 
+Attendees: Javier Gomez, Dr. Emily Carter, $YOURS_TRULY Notes: [NOTE] Identified three 
+underutilized cloud resources to decommission. Expected monthly savings: $4,500. Javier will 
+handle the decommissioning. Dr. Carter will adjust the budget forecast. [ENDNOTE] [TODO] 
+Confirm decommissioning of the three underutilized Apollo cloud instances. [ENDTODO] 
+[ENDMEETING]

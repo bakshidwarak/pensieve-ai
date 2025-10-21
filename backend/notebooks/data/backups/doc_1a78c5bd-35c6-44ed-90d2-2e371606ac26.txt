@@ -1,0 +1,36 @@
+[MEETING] Title: Project Triton - User Permissions Strategy Time: 10/21/2025, 12:16:55 PM 
+Attendees: Chloë Davis, Daniel Lee, $YOURS_TRULY Notes: [NOTE] Decided on Role-Based 
+Access Control (RBAC). Defined 4 key roles: Admin, Manager, Viewer, and Contributor. Daniel 
+will integrate with the existing LDAP service. Chloë to document the permission matrix. 
+[ENDNOTE] [TODO] Review and approve the Triton RBAC Matrix before implementation starts. 
+[ENDTODO] [ENDMEETING] 
+ 
+[MEETING] Title: 1:1 with David Kim Time: 10/21/2025, 12:16:55 PM Attendees: David Kim, 
+$YOURS_TRULY Notes: [NOTE] David is eager to learn more about cloud infrastructure 
+testing. Assigned him to the next round of chaos engineering experiments on the 'Phoenix' 
+staging environment. [ENDNOTE] [FEEDBACK] FOR David Kim FROM $YOURS_TRULY 
+Keep volunteering for challenging tasks—it’s noticed![MEETING] [ENDMEETING] 
+ 
+[MEETING] Title: Project Apollo - Stakeholder Sync Time: 10/21/2025, 12:16:55 PM 
+Attendees: Javier Gomez, Dr. Emily Carter, $YOURS_TRULY Notes: [NOTE] Gave a green 
+status for the Q4 rollout. Dr. Carter is satisfied with the cost projections. Javier needs to ensure 
+the communications plan covers all non-technical users impacted by the database freeze. 
+[ENDNOTE] [TODO] Draft a company-wide email about the Project Apollo database freeze 
+dates. [ENDTODO] [ENDMEETING] 
+ 
+[MEETING] Title: New Hire Orientation - HR Feedback Time: 10/21/2025, 12:16:55 PM 
+Attendees: Lena Petrova, $YOURS_TRULY Notes: [NOTE] Lena provided constructive 
+feedback that the technical orientation is too fragmented. Agreed to consolidate the engineering 
+onboarding into a single 4-hour module. [ENDNOTE] [ENDMEETING] 
+ 
+[MEETING] Title: Project Quantum Leap - User Feedback Loop Time: 10/21/2025, 12:16:55 
+PM Attendees: Sarah Chen, Sophia Reyes, $YOURS_TRULY Notes: [NOTE] Sophia 
+suggested integrating a direct "Report Bug" button in the Alpha release. Sarah agreed to 
+implement it and route the reports directly to the 'Quantum' Jira board. Shared the Jira link: 
+[DOC LINK]jira/project-quantum-alpha. [ENDNOTE] [TODO] Create a custom field in 
+Jira for prioritizing Alpha user feedback. [ENDTODO] [ENDMEETING] 
+ 
+[MEETING] Title: Project Phoenix - Server Patching Schedule Time: 10/21/2025, 12:16:55 
+PM Attendees: Marcus Diaz, $YOURS_TRULY Notes: [NOTE] Scheduled the monthly security 
+patching for the 3rd Tuesday of every month, starting next month. Marcus will oversee the 
+process and manage rollback if necessary. [ENDNOTE] [ENDMEETING]

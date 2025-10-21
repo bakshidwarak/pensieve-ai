@@ -1,0 +1,33 @@
+executive audience. Dr. Carter will handle the Q&A on APAC. [ENDNOTE] [TODO] Final polish 
+on the Q3 Board Deck slides (specifically slides 5-8). [ENDTODO] [ENDMEETING] 
+ 
+[MEETING] Title: 1:1 with Alex Johnson Time: 10/21/2025, 12:16:55 PM Attendees: Alex 
+Johnson, $YOURS_TRULY Notes: [NOTE] Alex is ready for a new challenge. Suggested 
+co-leading the technical architecture for 'Project Nova' with Sophia. He seems excited about the 
+product-focused role. [ENDNOTE] [ENDMEETING] 
+ 
+[MEETING] Title: Project Nebula - Q1 Roadmap Planning Time: 10/21/2025, 12:16:55 PM 
+Attendees: Sophia Reyes, Marcus Diaz, $YOURS_TRULY Notes: [NOTE] Q1 focus will be on 
+API performance and third-party integrations. Sophia wants to prioritize the 'Slack' integration. 
+Marcus raised concerns about the current build process needing optimization first. [ENDNOTE] 
+[TODO] Schedule a dedicated 'Build Optimization' session with Marcus next week. [ENDTODO] 
+[ENDMEETING] 
+ 
+[MEETING] Title: Project Atlas - Finalizing Model Deployment Time: 10/21/2025, 12:16:55 
+PM Attendees: Ben Kuo, Aisha Khan, $YOURS_TRULY Notes: [NOTE] Agreed to use a 
+Blue/Green deployment strategy. Aisha will handle the containerization. Ben will set up A/B 
+testing framework to compare the new model against the old one for a week. [ENDNOTE] 
+[FEEDBACK] FOR Ben Kuo FROM $YOURS_TRULY Solid deployment plan, very 
+risk-averse, which is good for Atlas.[MEETING] [ENDMEETING] 
+ 
+[MEETING] Title: Interview: Director of Engineering (Candidate: Omar Hassan) Time: 
+10/21/2025, 12:16:55 PM Attendees: Omar Hassan, $YOURS_TRULY Notes: [NOTE] Omar 
+has experience managing multiple teams and large budgets. Strong focus on hiring and talent 
+development. Provided a detailed answer on handling a P0 production outage. Needs 
+clarification on stock options package. [ENDNOTE] [TODO] Pass along Omar's compensation 
+query to the CFO's office. [ENDTODO] [ENDMEETING] 
+ 
+[MEETING] Title: Client Success Check-in - Global Dynamics Time: 10/21/2025, 12:16:55 
+PM Attendees: Raj Patel, $YOURS_TRULY Notes: [NOTE] Global Dynamics is experiencing 
+high satisfaction. They're already asking about an expansion contract for their EU offices. This is 
+great news for Q1 revenue targets. [ENDNOTE] [ENDMEETING]

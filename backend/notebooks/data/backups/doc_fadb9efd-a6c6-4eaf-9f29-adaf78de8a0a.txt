@@ -1,0 +1,36 @@
+[TODO] Review Sarah's updated flow diagrams for the Phoenix API. [ENDTODO] 
+[ENDMEETING] 
+ 
+[MEETING] Title: 1:1 with Daniel Lee Time: 10/21/2025, 12:16:55 PM Attendees: Daniel Lee, 
+$YOURS_TRULY Notes: [NOTE] Daniel is interested in becoming a tech lead. Discussed the 
+necessary soft skills, especially conflict resolution. Shared a link to the "Leading through 
+Influence" course on the internal LMS. [DOC LINK]lms/leadership-influence-module. 
+[ENDNOTE] [FEEDBACK] FOR Daniel Lee FROM $YOURS_TRULY Keep pushing for 
+architectural excellence; your contributions to Triton have been invaluable.[MEETING] 
+[ENDMEETING] 
+ 
+[MEETING] Title: Annual Review - Marcus Diaz Time: 10/21/2025, 12:16:55 PM Attendees: 
+Marcus Diaz, $YOURS_TRULY Notes: [NOTE] Overall a successful year. Marcus exceeded 
+expectations on system reliability metrics. Agreed on a stretch goal to mentor two new hires in 
+the coming year. [ENDNOTE] [ENDMEETING] 
+ 
+[MEETING] Title: Project Apollo - Budget Reconciliation Time: 10/21/2025, 12:16:55 PM 
+Attendees: Dr. Emily Carter, Javier Gomez, $YOURS_TRULY Notes: [NOTE] The cloud 
+migration costs are tracking 5% higher than projected, mainly due to higher-than-expected data 
+egress charges. Dr. Carter will adjust the budget sheet. Javier to research cheaper egress 
+options. [ENDNOTE] [TODO] Update 'Project Apollo' financial forecast in the shared drive. 
+[ENDTODO] [ENDMEETING] 
+ 
+[MEETING] Title: Project Triton - Stress Test Results Time: 10/21/2025, 12:16:55 PM 
+Attendees: Chloë Davis, $YOURS_TRULY Notes: [NOTE] The inventory service failed at 8,000 
+concurrent users—our target is 10,000. Chloë suspects a database connection pool 
+configuration issue. We need to re-run the tests after the fix. Random thought: Remember to 
+book the large conference room for the next weekly sync. [ENDNOTE] [ENDMEETING] 
+ 
+[MEETING] Title: Interview: Product Manager (Candidate: Sophia Reyes) Time: 10/21/2025, 
+12:16:55 PM Attendees: Sophia Reyes, $YOURS_TRULY Notes: [NOTE] Excellent 
+understanding of agile methodologies and user story mapping. Sophia presented a clear 
+strategy for the 'Nova' product lifecycle. Weak on technical implementation details but strong on 
+vision. [ENDNOTE] [FEEDBACK] FOR Recruiter FROM $YOURS_TRULY Proceed to the 
+executive interview. Needs a technical co-lead on the Nova project.[MEETING] 
+[ENDMEETING]

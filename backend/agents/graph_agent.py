@@ -33,25 +33,34 @@ class AgentState(TypedDict):
     messages: List[BaseMessage]
 
 class GraphAgentSystem:
-    """Graph-based agent system for RAG orchestration (simplified LangGraph alternative)"""
     
-    def __init__(self):
+    def __init__(self, retriever=None):
         self.llm = ChatOpenAI(
             openai_api_key=os.getenv("OPENAI_API_KEY"),
             model_name="gpt-4",
             temperature=0.7
         )
         
-        self.vector_db = VectorDBService()
+        # Allow custom retriever or use default
+        self.retriever = retriever or VectorDBService()
         self.web_search = WebSearchService()
     
+    def set_retriever(self, retriever):
+        """Change the retriever at runtime"""
+        self.retriever = retriever
+        logger.info(f"✅ Retriever changed to: {type(retriever).__name__}")
+    
+    def get_retriever(self):
+        """Get the current retriever"""
+        return self.retriever
+    
     async def process_query(self, query: str, context: str = "") -> Dict[str, Any]:
-        """Process query through the graph-based agent system"""
+       
         try:
-            logger.info("🚀 Processing query through Graph Agent System...")
+            logger.info("🚀 Processing query ...")
             
-            # Initialize vector DB if needed
-            await self.vector_db.initialize()
+            # Initialize retriever if needed
+            await self.retriever.initialize()
             
             # Create initial state
             state = AgentState(
@@ -150,8 +159,8 @@ class GraphAgentSystem:
     async def _meeting_agent_node(self, state: AgentState) -> AgentState:
         """Run the meeting notes agent"""
         try:
-            # Search meeting notes
-            search_results = await self.vector_db.search_documents(
+            # Search using the configured retriever
+            search_results = await self.retriever.search_documents(
                 query=state["query"],
                 limit=5
             )

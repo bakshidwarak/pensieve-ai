@@ -1,0 +1,25 @@
+recent ad campaign. Ben Carter will investigate the campaign targeting. [ENDNOTE] 
+[FEEDBACK] FOR Ben Carter FROM $YOURS_TRULY Great job on MQL volume, but let's 
+sharpen the targeting.[MEETING] [ENDMEETING] 
+ 
+[MEETING] Title: Project Triton - Documentation Review Time: 10/21/2025, 12:16:55 PM 
+Attendees: Chloë Davis, David Kim, $YOURS_TRULY Notes: [NOTE] Reviewed the 
+'Onboarding New Devs' guide. David found a few broken links. Chloë will fix the links and add a 
+troubleshooting FAQ section by end of day. [ENDNOTE] [TODO] Final sign-off on the Triton 
+New Dev Guide. [ENDTODO] [ENDMEETING] 
+ 
+[MEETING] Title: Project Nebula - Accessibility Audit Findings Time: 10/21/2025, 12:16:55 
+PM Attendees: Maya Singh, Liam O’Connell, $YOURS_TRULY Notes: [NOTE] Identified 5 P2 
+accessibility issues (WCAG AA standard). Liam is assigned to track the fixes. Maya will update 
+the design system to ensure future compliance. [ENDNOTE] [ENDMEETING] 
+ 
+[MEETING] Title: Project Atlas - Infrastructure Scaling Time: 10/21/2025, 12:16:55 PM 
+Attendees: Ben Kuo, Marcus Diaz, $YOURS_TRULY Notes: [NOTE] Data volume is increasing 
+faster than expected. Need to double the processing cluster size. Marcus will handle the 
+infrastructure scaling. Ben will monitor costs. [ENDNOTE] [TODO] Review the cost estimate for 
+doubling the Atlas processing cluster. [ENDTODO] [ENDMEETING] 
+ 
+[MEETING] Title: 1:1 with Lena Petrova (Mentorship Check-in) Time: 10/21/2025, 12:16:55 
+PM Attendees: Lena Petrova, $YOURS_TRULY Notes: [NOTE] Lena is mentoring the new 
+analyst, Eva Rostova. Discussed strategies for giving difficult feedback. Shared a course on 
+coaching: [DOC LINK]lms/coaching-and-mentoring. [ENDNOTE] [ENDMEETING]

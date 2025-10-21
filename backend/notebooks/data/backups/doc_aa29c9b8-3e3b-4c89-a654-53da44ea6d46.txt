@@ -1,0 +1,34 @@
+[MEETING] Title: Weekly Marketing Sync - Q4 Campaigns Time: 10/21/2025, 12:16:55 PM 
+Attendees: Raj Patel, Maya Singh, $YOURS_TRULY Notes: [NOTE] Focusing on the 'Security 
+First' theme. Raj proposed a webinar series. Maya needs final copy for the landing pages by 
+Wednesday. Discussed using the 'Global Dynamics' case study when it's ready. [ENDNOTE] 
+[TODO] Finalize the three key marketing messages for the Q4 campaign. [ENDTODO] 
+[ENDMEETING] 
+ 
+[MEETING] Title: 1:1 with Dr. Emily Carter Time: 10/21/2025, 12:16:55 PM Attendees: Dr. 
+Emily Carter, $YOURS_TRULY Notes: [NOTE] Dr. Carter is asking about cross-departmental 
+collaboration issues with the procurement team. Suggested a joint working session to clarify 
+their new expense process. [ENDNOTE] [FEEDBACK] FOR Dr. Emily Carter FROM 
+$YOURS_TRULY Your ability to manage global finances under pressure is a huge asset 
+to the team.[MEETING] [ENDMEETING] 
+ 
+[MEETING] Title: Project Atlas - Model Retraining Strategy Time: 10/21/2025, 12:16:55 PM 
+Attendees: Ben Kuo, Javier Gomez, $YOURS_TRULY Notes: [NOTE] Agreed to retrain the 
+Atlas prediction model nightly using a rolling 90-day window of data. Javier raised an alert 
+about potential data drift due to seasonal market changes. [ENDNOTE] [TODO] Set up 
+monitoring dashboards for 'Atlas' data drift alerts. [ENDTODO] [ENDMEETING] 
+ 
+[MEETING] Title: Design Huddle - Project Nebula Mobile Layout Time: 10/21/2025, 12:16:55 
+PM Attendees: Maya Singh, $YOURS_TRULY Notes: [NOTE] Reviewed the hamburger menu 
+implementation. Simplified the navigation structure to three main items. Maya noted that the 
+'Settings' section will require a separate, in-depth meeting. [ENDNOTE] [ENDMEETING] 
+ 
+[MEETING] Title: Project Quantum Leap - Dependencies Review Time: 10/21/2025, 12:16:55 
+PM Attendees: Sarah Chen, Alex Johnson, $YOURS_TRULY Notes: [NOTE] Key dependency 
+on the 'API Gateway V2' is delayed by one week. This pushes the 'Quantum Leap' Alpha 
+release back. Alex to talk to the Gateway team lead. Sarah will focus on parallel tasks in the 
+meantime. [ENDNOTE] [TODO] Adjust the 'Quantum Leap' timeline in Jira for the one-week 
+dependency delay. [ENDTODO] [ENDMEETING] 
+ 
+[MEETING] Title: Project Phoenix - Post-Deployment Check Time: 10/21/2025, 12:16:55 PM 
+Attendees: Marcus Diaz, $YOURS_TRULY Notes: [NOTE] System metrics are stable. Latency

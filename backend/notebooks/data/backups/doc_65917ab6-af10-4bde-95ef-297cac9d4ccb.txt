@@ -1,0 +1,34 @@
+[MEETING] Title: Interview: Junior Security Analyst (Candidate: Chloe Green) Time: 
+10/21/2025, 12:16:55 PM Attendees: Chloe Green, $YOURS_TRULY Notes: [NOTE] Strong 
+foundational knowledge of encryption and network security. Chloe Green needs mentoring in 
+incident response procedures. Good potential. [ENDNOTE] [ENDMEETING] 
+ 
+[MEETING] Title: Project Dragon Scale - Phase 2 Planning Time: 10/21/2025, 12:16:55 PM 
+Attendees: Dr. Emily Carter, Lena Petrova, $YOURS_TRULY Notes: [NOTE] Phase 2 focuses 
+on integrating a new machine learning component to predict customer churn. Lena will lead the 
+technical specification. Dr. Carter will manage the client contract amendment. [ENDNOTE] 
+[TODO] Draft the 'Dragon Scale Phase 2' SOW (Statement of Work). [ENDTODO] 
+[ENDMEETING] 
+ 
+[MEETING] Title: 1:1 with Aisha Khan Time: 10/21/2025, 12:16:55 PM Attendees: Aisha 
+Khan, $YOURS_TRULY Notes: [NOTE] Aisha is seeking feedback on her presentation style. 
+Suggested she focus on clear, actionable summaries at the start of her technical deep dives. 
+Shared an internal resource: [DOC 
+LINK]internal-comms/technical-presentation-tips. [ENDNOTE] [FEEDBACK] FOR 
+Aisha Khan FROM $YOURS_TRULY Your technical knowledge is outstanding; just work 
+on structuring your updates for non-engineers.[MEETING] [ENDMEETING] 
+ 
+[MEETING] Title: Project Quantum Leap - Feature Freeze Time: 10/21/2025, 12:16:55 PM 
+Attendees: Sarah Chen, Daniel Lee, $YOURS_TRULY Notes: [NOTE] Confirmed feature 
+freeze for the Beta release. Only critical bug fixes will be merged. Daniel emphasized no more 
+scope creep for the next two weeks. [ENDNOTE] [ENDMEETING] 
+ 
+[MEETING] Title: Interview: Senior Front-End Developer (Candidate: Samira Malik) Time: 
+10/21/2025, 12:16:55 PM Attendees: Samira Malik, $YOURS_TRULY Notes: [NOTE] 
+Exceptional JavaScript and React experience. Samira is exactly who we need for the Nebula 
+component library. Negotiating a 10% premium on salary. [ENDNOTE] [TODO] Inform HR that a 
+competitive offer is needed for Samira Malik. [ENDTODO] [ENDMEETING] 
+ 
+[MEETING] Title: Weekly Sales Huddle - Lead Quality Time: 10/21/2025, 12:16:55 PM 
+Attendees: Raj Patel, Ben Carter, $YOURS_TRULY Notes: [NOTE] Marketing-qualified leads 
+(MQLs) are up 20%, but sales conversion rate is flat. Raj suspects poor lead quality from a
