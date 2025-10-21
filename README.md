@@ -1,3 +1,13 @@
+## Five Minute Video Walkthrough
+https://www.loom.com/share/f45f275a13b24ec697607012fd0c5dc3?sid=20ba1187-aa3c-411c-9072-84089d56c5d4
+
+## Document answering all the questions and more details on implementation
+https://docs.google.com/document/d/15-LHyjBfPID2ZweqVV3LsumrSmDaro4XNGr1siUDYG0/edit?usp=sharing
+
+
+
+
+
 # Pensieve AI - IDE for Leaders
 
 Pensieve AI is an intelligent notepad-style text editor designed specifically for leaders and managers. It combines automatic template expansion with AI-powered chat capabilities, making it easy to create structured notes, manage documents, and get intelligent insights from your content.
