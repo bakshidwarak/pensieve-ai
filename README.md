@@ -4,6 +4,7 @@ https://www.loom.com/share/f45f275a13b24ec697607012fd0c5dc3?sid=20ba1187-aa3c-41
 ## Document answering all the questions and more details on implementation
 https://docs.google.com/document/d/15-LHyjBfPID2ZweqVV3LsumrSmDaro4XNGr1siUDYG0/edit?usp=sharing
 
+<img width="1400" height="700" alt="image" src="https://github.com/user-attachments/assets/fe8bb093-31d2-4b19-a221-4c7c4af4f7e8" />
 
 
 
