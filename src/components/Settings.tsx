@@ -137,3 +137,4 @@ const Settings: React.FC<SettingsProps> = ({ isOpen, onClose }) => {
 };
 
 export default Settings;
+
