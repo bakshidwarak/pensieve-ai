@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Template Expansion Test</title>
+    <style>
+        body {
+            font-family: monospace;
+            padding: 20px;
+            background: #1e1e1e;
+            color: #d4d4d4;
+        }
+        textarea {
+            width: 100%;
+            height: 300px;
+            background: #252526;
+            color: #d4d4d4;
+            border: 1px solid #3e3e42;
+            padding: 10px;
+            font-family: 'Consolas', monospace;
+            font-size: 14px;
+        }
+        .info {
+            margin: 20px 0;
+            padding: 15px;
+            background: #252526;
+            border: 1px solid #667eea;
+            border-radius: 4px;
+        }
+        .trigger {
+            background: #667eea;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Template Expansion Test</h1>
+
+    <div class="info">
+        <p>Type one of these triggers and press <strong>Tab</strong>:</p>
+        <p>
+            <span class="trigger">meet</span>
+            <span class="trigger">todo</span>
+            <span class="trigger">feed</span>
+            <span class="trigger">doc</span>
+        </p>
+    </div>
+
+    <textarea id="editor" placeholder="Type 'meet' and press Tab..."></textarea>
+
+    <div id="status" class="info" style="margin-top: 20px;"></div>
+
+    <script>
+        const templates = {
+            'meet': `## Meeting:
+**Date:** ${new Date().toISOString().split('T')[0]}
+**Attendees:**
+
+### Agenda
+-
+
+### Discussion
+-
+
+### Action Items
+- [ ]
+
+### Next Steps
+-
+
+### Notes
+`,
+            'todo': `## TODO:
+**Due:**
+**Priority:**
+
+### Description
+
+
+### Checklist
+- [ ]
+
+### Notes
+`,
+            'feed': `## Feedback:
+**From:**
+**To:**
+**Date:** ${new Date().toISOString().split('T')[0]}
+
+### Context
+
+
+### What Went Well
+-
+
+### Areas for Improvement
+-
+
+### Action Items
+- [ ]
+`,
+            'doc': `#
+**Author:**
+**Date:** ${new Date().toISOString().split('T')[0]}
+**Status:**
+
+## Overview
+
+
+## Details
+
+
+## References
+
+`
+        };
+
+        const editor = document.getElementById('editor');
+        const status = document.getElementById('status');
+
+        function extractTrigger(text, cursorPosition) {
+            const textBeforeCursor = text.substring(0, cursorPosition);
+            const match = textBeforeCursor.match(/(\w+)$/);
+            return match ? match[1].toLowerCase() : null;
+        }
+
+        editor.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+
+                const cursorPosition = editor.selectionStart;
+                const trigger = extractTrigger(editor.value, cursorPosition);
+
+                status.innerHTML = `Detected trigger: <span class="trigger">${trigger || 'none'}</span>`;
+
+                if (trigger && templates[trigger]) {
+                    const textBefore = editor.value.substring(0, cursorPosition - trigger.length);
+                    const textAfter = editor.value.substring(cursorPosition);
+                    const template = templates[trigger];
+
+                    editor.value = textBefore + template + textAfter;
+
+                    const newPosition = textBefore.length + template.length;
+                    editor.selectionStart = newPosition;
+                    editor.selectionEnd = newPosition;
+
+                    status.innerHTML = `✅ Expanded template: <span class="trigger">${trigger}</span>`;
+                } else if (trigger) {
+                    status.innerHTML = `❌ No template found for: <span class="trigger">${trigger}</span>`;
+                }
+            }
+        });
+
+        editor.addEventListener('input', (e) => {
+            const cursorPosition = editor.selectionStart;
+            const trigger = extractTrigger(editor.value, cursorPosition);
+
+            if (trigger && templates[trigger]) {
+                status.innerHTML = `Press Tab to expand: <span class="trigger">${trigger}</span>`;
+            } else {
+                status.innerHTML = 'Type a trigger word...';
+            }
+        });
+    </script>
+</body>
+</html>

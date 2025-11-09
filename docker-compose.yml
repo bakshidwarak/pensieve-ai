@@ -1,27 +1,37 @@
-version: "3.8"
+version: '3.8'
+
 services:
-  postgres:
-    image: postgres:15
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: pensieve
-    ports:
-      - "5432:5432"
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-  api:
-    build: .
-    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
-    volumes:
-      - ./:/app
-    environment:
-      - DATABASE_URL=postgresql+asyncpg://postgres:postgres@postgres:5432/pensieve
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
-      - API_KEYS=dev-key
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
     ports:
       - "8000:8000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - TOGETHER_API_KEY=${TOGETHER_API_KEY}
+      - TAVILY_API_KEY=${TAVILY_API_KEY}
+      - RAG_DATA_DIR=/app/data
+      - DEBUG=True
+    volumes:
+      - ./data:/app/data
+      - ./backend:/app/backend
+      - ./app:/app/app
+    env_file:
+      - .env
+    command: uvicorn backend.main:app --host 0.0.0.0 --port 8000 --reload
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_URL=http://localhost:8000
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    command: npm run dev
     depends_on:
-      - postgres
-volumes:
-  pgdata:
+      - backend

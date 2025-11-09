@@ -1,12 +1,26 @@
-from sqlalchemy import Column, String, Text, JSON, TIMESTAMP
-from sqlalchemy.sql import func
-from app.db import Base
+"""Model utilities for constructing chat LLM clients.
 
-class Note(Base):
-    __tablename__ = "notes"
-    id = Column(String, primary_key=True, index=True)
-    text = Column(Text, nullable=False)
-    tags = Column(JSON, nullable=True)
-    meta = Column("metadata", JSON, nullable=True)
-    created_at = Column(TIMESTAMP(timezone=True), server_default=func.now())
-    updated_at = Column(TIMESTAMP(timezone=True), server_default=func.now(), onupdate=func.now())
+Centralizes configuration of the default chat model and temperature so graphs can
+import a single helper without repeating provider-specific wiring.
+"""
+from __future__ import annotations
+
+import os
+from typing import Any
+
+from langchain_openai import ChatOpenAI
+
+
+def get_chat_model(model_name: str | None = None, *, temperature: float = 0) -> Any:
+    """Return a configured LangChain ChatOpenAI client.
+
+    - model_name: optional override. If not provided, uses OPENAI_MODEL env var,
+      falling back to "gpt-4.1-nano".
+    - temperature: sampling temperature for the chat model.
+
+    Returns: a LangChain-compatible chat model instance.
+    """
+    name = model_name or os.environ.get("OPENAI_MODEL", "gpt-4.1-nano")
+    return ChatOpenAI(model=name, temperature=temperature)
+
+
