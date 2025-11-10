@@ -19,28 +19,22 @@ function IDEPage() {
 
   return (
     <div className="ide-page">
-      {/* Header */}
-      <header className="ide-header">
-        <div className="header-left">
-          <h1 className="logo">Pensieve.ai</h1>
-          <span className="subtitle">IDE for Leaders</span>
-        </div>
-        <div className="header-right">
-          <button
-            className="templates-btn"
-            onClick={() => setShowTemplates(true)}
-            title="Manage Templates"
-          >
-            📝 Templates
-          </button>
-          <button
-            className="toggle-chat-btn"
-            onClick={() => setShowChat(!showChat)}
-          >
-            {showChat ? 'Hide Chat' : 'Show Chat'}
-          </button>
-        </div>
-      </header>
+      {/* Page Header with Actions */}
+      <div className="page-actions">
+        <button
+          className="templates-btn"
+          onClick={() => setShowTemplates(true)}
+          title="Manage Templates"
+        >
+          📝 Templates
+        </button>
+        <button
+          className="toggle-chat-btn"
+          onClick={() => setShowChat(!showChat)}
+        >
+          {showChat ? 'Hide Chat' : 'Show Chat'}
+        </button>
+      </div>
 
       {/* 3-Panel Layout */}
       <div className="ide-container">
