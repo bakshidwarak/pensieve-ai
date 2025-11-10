@@ -86,4 +86,4 @@ backend/data/chroma_db/*
 backend/data/config.json
 
 # Cursor IDE
-.cursor/
+.cursor/backend/uploads/*.mp3
