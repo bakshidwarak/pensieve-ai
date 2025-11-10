@@ -3,9 +3,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from backend.api.routes import health, notes, transcribe, templates, interview, strategy, conversations
+from backend.api.routes import health, notes, transcribe, templates, interview, strategy, conversations, chat
 # Temporarily disabled - heavy AI imports causing startup delays
-# from backend.api.routes import ai, chat
+# from backend.api.routes import ai
 from backend.core.config import settings
 from backend.core.database import init_db
 import os
@@ -52,9 +52,9 @@ app.include_router(transcribe.router, prefix="/api/transcribe", tags=["transcrib
 app.include_router(interview.router, prefix="/api/interview", tags=["interview"])
 app.include_router(strategy.router, prefix="/api/strategy", tags=["strategy"])
 app.include_router(conversations.router, prefix="/api/conversations", tags=["conversations"])
+app.include_router(chat.router, prefix="/api/chat", tags=["chat"])
 # Temporarily disabled - heavy AI imports
 # app.include_router(ai.router, prefix="/api/ai", tags=["ai"])
-# app.include_router(chat.router, prefix="/api/chat", tags=["chat"])
 
 
 @app.get("/")
