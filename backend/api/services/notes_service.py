@@ -129,11 +129,25 @@ class NotesService:
                 "updated_at": note.updated_at.isoformat(),
             }
 
-            self.vector_store.update_note(
-                vector_id=note.vector_id,
-                content=f"{note.title}\n\n{note.content}",
-                metadata=metadata
-            )
+            try:
+                self.vector_store.update_note(
+                    vector_id=note.vector_id,
+                    content=f"{note.title}\n\n{note.content}",
+                    metadata=metadata
+                )
+            except ValueError as e:
+                # Vector not found - create a new one instead
+                print(f"Vector ID {note.vector_id} not found, creating new vector: {e}")
+                vector_id = self.vector_store.add_note(
+                    note_id=note.id,
+                    content=f"{note.title}\n\n{note.content}",
+                    metadata=metadata
+                )
+                note.vector_id = vector_id
+                db.commit()
+            except Exception as e:
+                print(f"Error updating vector store: {e}")
+                # Continue anyway - don't fail the note update
 
         return note
 
